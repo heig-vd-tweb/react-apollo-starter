@@ -34,11 +34,11 @@ class App extends Component {
         <main className="App-main">
           <div className="App-content">
             <Query query={query}>
-              {({ data, loading }) => (
-                loading
-                  ? <div>Loading...</div>
-                  : <pre>{JSON.stringify(data, null, 2)}</pre>
-              )}
+              {({ data, loading, error }) => {
+                if (error) return 'Oups an error occured. Please check the console'
+                if (loading) return 'Loading...'
+                return <pre>{JSON.stringify(data, null, 2)}</pre>;
+              }}
             </Query>
           </div>
         </main>
